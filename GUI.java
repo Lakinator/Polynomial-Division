@@ -2,7 +2,7 @@ import javax.swing.*;
 
 /**
  * 12.03.2017
- * Created by user Schal (Lukas Schalk).
+ * Created by user Schalk (Lukas Schalk).
  */
 
 public class GUI {
