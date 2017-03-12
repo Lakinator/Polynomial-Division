@@ -1,6 +1,6 @@
 /**
  * 11.03.2017
- * Created by user Schal (Lukas Schalk).
+ * Created by user Schalk (Lukas Schalk).
  */
 
 public class Helper {
