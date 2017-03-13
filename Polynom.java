@@ -22,10 +22,23 @@ public class Polynom {
     }
 
     public static String[] splitPolynom(String in) {
-        //System.out.println("Splitting: " + in);
+        String[] out_java7;    //Only needed if running on java 7
+       
 
         String[] out = Helper.trimAll(in).split("(?=[+-])");
-        if (!out[0].startsWith("+") && !out[0].startsWith("-") ) out[0] = "+" + out[0];
+
+        if (out[0].isEmpty()) {
+            out_java7 = new String[out.length - 1];
+            for (int i = 0; i < out_java7.length; i++) {
+                out_java7[i] = out[i + 1];
+            }
+
+            if (!out_java7[0].startsWith("+") && !out_java7[0].startsWith("-") ) out[0] = "+" + out[0];
+            return out_java7;
+        } else {
+            if (!out[0].startsWith("+") && !out[0].startsWith("-") ) out[0] = "+" + out[0];
+        }
+       
         return out;
     }
 
