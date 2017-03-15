@@ -14,8 +14,8 @@ public class PolyMain {
     public static String OUTPUT_TO_GUI;
 
     public static void main(String[] args) {
-        //runGui();
-        System.out.println(runMainLoop("3", "2", true));
+        runGui();
+        //System.out.println(runMainLoop("3", "2", true));
         //System.out.println(validateInput("3x^2.4-4x^2.2+1+x^2"));
     }
 
