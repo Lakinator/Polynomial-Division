@@ -1,10 +1,12 @@
+package net.bplaced.lakinator.PolynomLib;
+
 /**
  * 11.03.2017
  * Created by user Schalk (Lukas Schalk).
  */
 
-public class Helper {
-    public static String to_str(String[] arr) {
+class Helper {
+    static String to_str(String[] arr) {
         String out = "";
 
         for (String s : arr) out += s;
@@ -12,7 +14,7 @@ public class Helper {
         return out;
     }
 
-    public static String trimAll(String s) {
+    static String trimAll(String s) {
         String[] temp = s.split(" ");
         String out = "";
 
@@ -21,19 +23,19 @@ public class Helper {
         return out;
     }
 
-    public static String compileOutput(String output, Polynom poly1, Polynom poly2, String ergebnis, String rest) {
+    static String compileOutput(String output, Polynom poly1, Polynom poly2, String ergebnis, String rest) {
 
         output = output.replace("&poly1", poly1.clean());
         output = output.replace("&poly2", poly2.clean());
         output = output.replace("&erg", Helper.clean(ergebnis));
 
-        if (rest.equals("+0")) output = output.replace("&rest", "");
-        else output = output.replace("&rest", "+ " + Helper.clean(rest) + "/" + poly2.clean());
+        if (rest.equals("+0") || rest.equals("+")) output = output.replace("&rest", "");
+        else output = output.replace("&rest", "+ (" + Helper.clean(rest) + "/" + poly2.clean() + ")");
 
         return output;
     }
 
-    public static String clean(String s) {
+    static String clean(String s) {
         s = to_str(s.split("\\.0"));
         String[] t = Polynom.splitPolynom(s);
 
@@ -45,24 +47,15 @@ public class Helper {
             if (t[i].matches("[+-]1[a-z].*")) t[i] = t[i].replace("1", "");
             if (t[i].matches(".*[a-z]\\^1")) t[i] = t[i].split("\\^")[0];
 
-
-            /*if (Pattern.compile("[a-z]\\^0\\.0").matcher(t[i]).find()) t[i] = "1";
-            if (Pattern.compile("0\\.0[a-z]").matcher(t[i]).find()) t[i] = "";
-            if (Pattern.compile("[a-z]\\^1\\.0").matcher(t[i]).find()) t[i] = t[i].replace("^1.0", "");
-            if (Pattern.compile("1\\.0[a-z]").matcher(t[i]).find()) t[i] = t[i].replace("1.0", "");
-
-            if (Pattern.compile("[a-z]\\^0").matcher(t[i]).find()) t[i] = "1";
-            if (Pattern.compile("[^\\.]0[a-z]").matcher(t[i]).find()) t[i] = "";
-            if (Pattern.compile("[a-z]\\^1").matcher(t[i]).find()) t[i] = t[i].replace("^1", "");
-            if (Pattern.compile("1[a-z]").matcher(t[i]).find()) t[i] = t[i].replace("1", "");*/
+            if (t[i].equals("+")) t[i] = "+0";
 
         }
 
         return to_str(t);
     }
 
-    public static String biggestFromPolynom(String in) {
-        int highest = 0;
+    static String biggestFromPolynom(String in) {
+        double highest = 0;
         int highestIndex = 0;
 
         for (int i = 0; i < Polynom.splitPolynom(in).length; i++) {
