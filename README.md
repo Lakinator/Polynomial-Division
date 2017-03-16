@@ -12,4 +12,6 @@ Documentation:
   - PolyMain.runMainLoop(String polynom1, String polynom2, boolean log) returns the formatted result of the division between polynom1 and polynom2.
     The boolean is for logging
 
+The GUI:
+
 ![vorschaubild](https://cloud.githubusercontent.com/assets/21976072/23831925/18405f00-072b-11e7-9927-9d69af3327f8.png)
