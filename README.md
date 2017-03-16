@@ -4,7 +4,7 @@ A library to calculate Polynomdivisions
 Documentation:
 - First, add the Polynomdivision.jar as an external library to your project
 - Then you have to import net.bplaced.lakinator.PolynomLib.PolyMain to use the lib methods
-- After that you can call 4 methods with this library:
+- After that you can call 4 static methods with this library:
   - PolyMain.getVersion() returns the library version
   - PolyMain.runGui() runs a little JFrame window with that you can directly calculate something and see the output.
     It also contains an Error Logger, if something goes wrong, create an Issue with your Log on my Github page
