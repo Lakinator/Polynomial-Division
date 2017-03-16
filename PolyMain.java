@@ -9,7 +9,7 @@ public class PolyMain {
     /**
      * This String contains the Version of the Library
      */
-    private static final String VERSION = "0.50 [ALPHA]";
+    private static final String VERSION = "0.90 [BETA]";
     /**
      * This String contains the Variable that is used in the output
      * Later it will contain the Variable that is used by the user, but that's not implemented yet
@@ -38,11 +38,14 @@ public class PolyMain {
      * @param args
      *        Program arguments
      */
-    public static void main(String[] args) {
+    //public static void main(String[] args) {
         //runGui();
-        //System.out.println(runMainLoop("3", "2", true));
-        //System.out.println(validateInput("3x^2.4-4x^2.2+1+x^2"));
-    }
+        //System.out.println(runMainLoop("x^2+2x+2", "x-1", true));
+        //System.out.println(validateInput("3x^2.4-4x^2.2+x^2"));
+        //System.out.println(Helper.clean(PolynomMath.differenz("3x^3+x", "x^2+3x")));
+        //System.out.println(Helper.clean(PolynomMath.division("+2x", "+x")));
+        //System.out.println(PolynomMath.differenz("+4x^2+3", "+4x"));
+    //}
 
     /**
      * A Method to get the Version of the Library
@@ -59,7 +62,7 @@ public class PolyMain {
      *        The String that should be validated
      * @return True if the String hits all requirements, false if not
      */
-    public static boolean validateInput(String input) {
+    public static int validateInput(String input) {
 
         if (Helper.trimAll(input).matches("([+-]?[0-9]*[.]?[0-9]*[a-z]?[\\^]?[0-9]*[.]?[0-9]*)?([+-][0-9]*[.]?[0-9]*[a-z]?[\\^]?[0-9]*[.]?[0-9]*)*")) {
 
@@ -69,15 +72,15 @@ public class PolyMain {
 
             for (String s : Polynom.splitPolynom(input)) {
                 if (Polynom.getExponent(s) < highest) highest = Polynom.getExponent(s);
-                else return false;
+                else return 2; //order of each exponent is wrong (expo1 > expo2 > expo3)
             }
 
             //System.out.println("Reihenfolge matches");
 
-            return true;
+            return 0; //valid
 
         } else {
-            return false;
+            return 1; //wrong syntax of the elements
         }
 
     }
@@ -110,10 +113,10 @@ public class PolyMain {
             usedPolynom1.setWert( Helper.clean(PolynomMath.differenz(usedPolynom1.getWert(), t2)) );
 
             //Runterziehen falls möglich
-            if (Polynom.splitPolynom(polynom1.getWert()).length > Polynom.splitPolynom(polynom2.getWert()).length+index) {
+            /*if (Polynom.splitPolynom(polynom1.getWert()).length > Polynom.splitPolynom(polynom2.getWert()).length+index) {
                 usedPolynom1.setWert( usedPolynom1.getWert() + (Polynom.splitPolynom(polynom1.getWert())[Polynom.splitPolynom(polynom2.getWert()).length+index]) );
                 index++;
-            }
+            }*/
 
             OUTPUT_TO_GUI += usedPolynom1.clean() + "\n";
 
