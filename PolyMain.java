@@ -6,24 +6,59 @@ package net.bplaced.lakinator.PolynomLib;
  */
 
 public class PolyMain {
-    public static final String VERSION = "0.42 [ALPHA]";
+    /**
+     * This String contains the Version of the Library
+     */
+    private static final String VERSION = "0.50 [ALPHA]";
+    /**
+     * This String contains the Variable that is used in the output
+     * Later it will contain the Variable that is used by the user, but that's not implemented yet
+     */
     public static String usedVariable = "x";
+    /**
+     * This String is going to contain the result of the calculation
+     */
     private static String ergebnis;
+    /**
+     * This Polynom is the Divident
+     */
     private static Polynom polynom1;
+    /**
+     * This Polynom is the Divisor
+     */
     private static Polynom polynom2;
+    /**
+     * This String is going to contain the result of the calculation plus the formatted calculation that is used in the GUI output
+     * It's also the return variable of the mainLoop
+     */
     public static String OUTPUT_TO_GUI;
 
+    /**
+     * The main loop is currently only for testing and is not in the final library compile
+     * @param args
+     *        Program arguments
+     */
     public static void main(String[] args) {
-        runGui();
+        //runGui();
         //System.out.println(runMainLoop("3", "2", true));
         //System.out.println(validateInput("3x^2.4-4x^2.2+1+x^2"));
     }
 
-
+    /**
+     * A Method to get the Version of the Library
+     * @return the Version String
+     */
     public static String getVersion() {
         return VERSION;
     }
 
+    /**
+     * This Method validates a given String
+     * It returns true, if the String matches the Polynom Syntax and is in the right order (exponent1 > exponent2 ...)
+     * @param input
+     *        The String that should be validated
+     * @return True if the String hits all requirements, false if not
+     */
     public static boolean validateInput(String input) {
 
         if (Helper.trimAll(input).matches("([+-]?[0-9]*[.]?[0-9]*[a-z]?[\\^]?[0-9]*[.]?[0-9]*)?([+-][0-9]*[.]?[0-9]*[a-z]?[\\^]?[0-9]*[.]?[0-9]*)*")) {
