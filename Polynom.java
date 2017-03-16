@@ -19,8 +19,7 @@ class Polynom {
     }
 
     String clean() {
-        this.wert = Helper.clean(this.wert);
-        return this.wert;
+        return Helper.clean(this.wert);
     }
 
     static String[] splitPolynom(String in) {
@@ -32,7 +31,7 @@ class Polynom {
         if (out.length == 0) return new String[0];
 
         if (out[0].isEmpty() && out.length > 1) {
-            System.out.println("Java 7");
+            //System.out.println("Java 7");
 
             out_java7 = new String[out.length - 1];
             for (int i = 0; i < out_java7.length; i++) {
