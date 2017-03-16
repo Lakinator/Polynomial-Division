@@ -29,7 +29,7 @@ class Helper {
         output = output.replace("&poly2", poly2.clean());
         output = output.replace("&erg", Helper.clean(ergebnis));
 
-        if (rest.equals("+0") || rest.equals("+")) output = output.replace("&rest", "");
+        if (rest.equals("+0") || rest.equals("+") || rest.equals("0") || rest.isEmpty()) output = output.replace("&rest", "");
         else output = output.replace("&rest", "+ (" + Helper.clean(rest) + "/" + poly2.clean() + ")");
 
         return output;
@@ -41,11 +41,11 @@ class Helper {
 
         for (int i = 0; i < t.length; i++) {
 
-            if (t[i].matches("[+-]0[a-z].*")) t[i] = "";
+            if (t[i].matches("[+-]?[0]+[a-z].*")) t[i] = "";
             if (t[i].matches(".*[a-z]\\^0")) t[i] = t[i].split("[a-z]")[0];
 
-            if (t[i].matches("[+-]1[a-z].*")) t[i] = t[i].replace("1", "");
             if (t[i].matches(".*[a-z]\\^1")) t[i] = t[i].split("\\^")[0];
+            if (t[i].matches("[+-][1][a-z].*")) t[i] = t[i].replace("1", "");
 
             if (t[i].equals("+")) t[i] = "+0";
 
@@ -66,5 +66,15 @@ class Helper {
         }
 
         return Polynom.splitPolynom(in)[highestIndex];
+    }
+
+    static String elementFromPolynomByExpo(String in, double expo) {
+
+        for (int i = 0; i < Polynom.splitPolynom(in).length; i++) {
+            if (Polynom.getExponent(Polynom.splitPolynom(in)[i]) == expo) return Polynom.splitPolynom(in)[i];
+        }
+
+        return "";
+
     }
 }
