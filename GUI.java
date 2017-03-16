@@ -77,7 +77,7 @@ class GUI {
         outputArea.setBounds(10, 160, 375, 290);
         outputArea.setEditable(false);
 
-        version_lbl = new JLabel("Lukas Schalk | 2017 | Version: " + PolyMain.VERSION);
+        version_lbl = new JLabel("Lukas Schalk | 2017 | Version: " + PolyMain.getVersion());
         version_lbl.setBounds(10, 450, 300, 20);
 
 
