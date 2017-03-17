@@ -23,10 +23,20 @@ class Helper {
         return out;
     }
 
-    static String compileOutput(String output, Polynom poly1, Polynom poly2, String ergebnis, String rest) {
+    static String compileFormattedOutput(String output, Polynom poly1, Polynom poly2, String ergebnis, String rest) {
 
         output = output.replace("&poly1", poly1.cleaned());
         output = output.replace("&poly2", poly2.cleaned());
+        output = output.replace("&erg", Helper.clean(ergebnis));
+
+        if (rest.equals("+0") || rest.equals("+") || rest.equals("0") || rest.isEmpty()) output = output.replace("&rest", "");
+        else output = output.replace("&rest", "+ (" + Helper.clean(rest) + "/" + poly2.cleaned() + ")");
+
+        return output;
+    }
+
+    static String compileOutput(String output, Polynom poly2, String ergebnis, String rest) {
+
         output = output.replace("&erg", Helper.clean(ergebnis));
 
         if (rest.equals("+0") || rest.equals("+") || rest.equals("0") || rest.isEmpty()) output = output.replace("&rest", "");
