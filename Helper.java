@@ -25,12 +25,12 @@ class Helper {
 
     static String compileOutput(String output, Polynom poly1, Polynom poly2, String ergebnis, String rest) {
 
-        output = output.replace("&poly1", poly1.clean());
-        output = output.replace("&poly2", poly2.clean());
+        output = output.replace("&poly1", poly1.cleaned());
+        output = output.replace("&poly2", poly2.cleaned());
         output = output.replace("&erg", Helper.clean(ergebnis));
 
         if (rest.equals("+0") || rest.equals("+") || rest.equals("0") || rest.isEmpty()) output = output.replace("&rest", "");
-        else output = output.replace("&rest", "+ (" + Helper.clean(rest) + "/" + poly2.clean() + ")");
+        else output = output.replace("&rest", "+ (" + Helper.clean(rest) + "/" + poly2.cleaned() + ")");
 
         return output;
     }
@@ -54,7 +54,7 @@ class Helper {
         return to_str(t);
     }
 
-    static String biggestFromPolynom(String in) {
+    static String biggestExponentialElementFromPolynom(String in) {
         double highest = 0;
         int highestIndex = 0;
 
