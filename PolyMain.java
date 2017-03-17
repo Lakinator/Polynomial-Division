@@ -23,10 +23,10 @@ public class PolyMain {
      */
     //public static void main(String[] args) {
         //runGui();
-        //System.out.println(runMainLoop("x^2+2x+2", "x-1", true));
+        //System.out.println(runMainLoop("x^2+2x", "x-1", true));
         //System.out.println(validateInput("3x^2.4-4x^2.2+x^2"));
-        //System.out.println(Helper.clean(PolynomMath.differenz("3x^3+x", "x^2+3x")));
-        //System.out.println(Helper.clean(PolynomMath.division("+2x", "+x")));
+        //System.out.println(Helper.cleaned(PolynomMath.differenz("3x^3+x", "x^2+3x")));
+        //System.out.println(Helper.cleaned(PolynomMath.division("+2x", "+x")));
         //System.out.println(PolynomMath.differenz("+4x^2+3", "+4x"));
     //}
 
@@ -135,7 +135,7 @@ public class PolyMain {
             /* Multiplicating the result from step 1 with the whole second polynom (The divisor) */
             String t2 = PolynomMath.multiplizieren(
                                                   Helper.clean(t1),
-                                                  usedPolynom2.clean()
+                                                  usedPolynom2.cleaned()
                                                   );
             /*                                                                                   */
 
@@ -159,7 +159,7 @@ public class PolyMain {
             /*                                                               */
 
 
-            formatted_output += usedPolynom1.clean() + "\n"; // Adding the calculated value from step 3 to the formatted output
+            formatted_output += usedPolynom1.cleaned() + "\n"; // Adding the calculated value from step 3 to the formatted output
 
         } while (Polynom.deg(usedPolynom1.getWert()) >= Polynom.deg(usedPolynom2.getWert()) &&
                 !(Polynom.splitPolynom(usedPolynom1.getWert()).length == 1 && Polynom.splitPolynom(usedPolynom2.getWert()).length == 1));
