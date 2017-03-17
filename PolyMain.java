@@ -9,7 +9,7 @@ public class PolyMain {
     /**
      * This String contains the Version of the Library
      */
-    private static final String VERSION = "0.91 [BETA]";
+    private static final String VERSION = "0.92 [BETA]";
     /**
      * This String contains the Variable that is used in the output
      * Later it will contain the Variable that is used by the user, but that's not implemented yet
@@ -81,12 +81,12 @@ public class PolyMain {
      *        The first Polynom String (Divident)
      * @param poly2
      *        The second Polynom String (Divisor)
-     * @param log
-     *        This boolean indicates whether logging should be on or not
+     * @param fullOutput
+     *        This boolean indicates whether the full formatted output or only the result should be returned
      * @return
      *        The formatted output String with the result and all calculation steps
      */
-    public static String runMainLoop(String poly1, String poly2, boolean log) {
+    public static String runMainLoop(String poly1, String poly2, boolean fullOutput) {
         /*
          * This String is going to contain the result of the calculation
          */
@@ -165,21 +165,10 @@ public class PolyMain {
                 !(Polynom.splitPolynom(usedPolynom1.getWert()).length == 1 && Polynom.splitPolynom(usedPolynom2.getWert()).length == 1));
 
 
-        if (log) {
-            System.out.println(ergebnis);
-            System.out.println(usedPolynom1.getWert());
-
-
-            System.out.println("Endergebnis: " + polynom1.getWert() + " : " + polynom2.getWert() + " = " + Helper.clean(ergebnis));
-            System.out.println("Rest: " + usedPolynom1.getWert());
-
-            System.out.println("\n\nCompiled Output: \n" + Helper.compileOutput(formatted_output, polynom1, polynom2, ergebnis, usedPolynom1.getWert()));
-        }
-
         // This compiles all other components into the output
-        formatted_output = Helper.compileOutput(formatted_output, polynom1, polynom2, ergebnis, usedPolynom1.getWert());
+        formatted_output = Helper.compileFormattedOutput(formatted_output, polynom1, polynom2, ergebnis, usedPolynom1.getWert());
 
-        return formatted_output;
+        return fullOutput ? formatted_output : Helper.compileOutput("&erg &rest", polynom2, ergebnis, usedPolynom1.getWert());
     }
 
 }
