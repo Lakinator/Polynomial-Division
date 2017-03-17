@@ -13,7 +13,6 @@ Documentation:
      - 1: The elements in the String have a wrong syntax
      - 2: The order of each exponent is wrong (expo1 > expo2 > expo3 > etc.)
   - PolyMain.runMainLoop(String polynom1, String polynom2, boolean fullOutput) returns if fullOutput is true the formatted result of the division between polynom1 and polynom2 or if fullOutput is false only the result.
-    The boolean is for logging
 
 The GUI:
 
