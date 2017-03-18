@@ -21,14 +21,14 @@ public class PolyMain {
      * @param args
      *        Program arguments
      */
-    //public static void main(String[] args) {
+    public static void main(String[] args) {
         //runGui();
         //System.out.println(runMainLoop("x^2+2x", "x-1", true));
         //System.out.println(validateInput("3x^2.4-4x^2.2+x^2"));
         //System.out.println(Helper.cleaned(PolynomMath.differenz("3x^3+x", "x^2+3x")));
         //System.out.println(Helper.cleaned(PolynomMath.division("+2x", "+x")));
         //System.out.println(PolynomMath.differenz("+4x^2+3", "+4x"));
-    //}
+    }
 
     /**
      * A Method to get the Version of the Library
@@ -128,7 +128,7 @@ public class PolyMain {
             /*                                                            */
 
 
-            ergebnis += t1; //Adding the result to the end result
+            ergebnis += t1; //Adding the result from step 1 to the end result
 
 
             /*                                 Step 2                                            */
@@ -149,7 +149,7 @@ public class PolyMain {
             usedPolynom1.setWert(
                                 // Cleaning the result
                                 Helper.clean(
-                                            // Subtracting the old polynom with the result from step 2
+                                            // Subtracting the old value with the result from step 2
                                             PolynomMath.differenz(
                                                                  usedPolynom1.getWert(),
                                                                  t2
