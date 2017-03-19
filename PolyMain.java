@@ -24,8 +24,8 @@ public class PolyMain {
      */
     //public static void main(String[] args) {
         //runGui();
-        //System.out.println("Valid: " + validateInput("3y^2+y", "y"));
-        //System.out.println(runMainLoop("3y^2+y", "y", true));
+        //System.out.println("Valid: " + validateInput("2Z", "Z"));
+        //System.out.println(runMainLoop("2Z", "Z", true));
         //System.out.println(Helper.cleaned(PolynomMath.differenz("3x^3+x", "x^2+3x")));
         //System.out.println(Helper.cleaned(PolynomMath.division("+2x", "+x")));
         //System.out.println(PolynomMath.differenz("+4x^2+3", "+4x"));
@@ -57,7 +57,7 @@ public class PolyMain {
 
         for (String currInput : input) {
 
-            if (Helper.trimAll(currInput).matches("([+-]?[0-9]*(\\.[0-9]+)?[a-z]?(\\^[0-9]+(\\.[0-9]+)?)?)?([+-][0-9]*(\\.[0-9]+)?[a-z]?(\\^[0-9]+(\\.[0-9]+)?)?)*")) {
+            if (Helper.trimAll(currInput).matches("([+-]?[0-9]*(\\.[0-9]+)?[a-zA-Z]?(\\^[0-9]+(\\.[0-9]+)?)?)?([+-][0-9]*(\\.[0-9]+)?[a-zA-Z]?(\\^[0-9]+(\\.[0-9]+)?)?)*")) {
 
                 double highest = Polynom.deg(currInput)+1;
 
@@ -67,7 +67,7 @@ public class PolyMain {
 
 
                     for (int j = 0; j < currInput.toCharArray().length; j++) {
-                        if ((currInput.toCharArray()[j]+"").matches("[a-z]")) {
+                        if ((currInput.toCharArray()[j]+"").matches("[a-zA-Z]")) {
                             if (usedVariable.isEmpty()) {
                                 usedVariable = currInput.toCharArray()[j]+"";
                                 continue;
