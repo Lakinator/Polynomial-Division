@@ -82,7 +82,7 @@ class Polynom {
         for (String teil : alleTeile) {
             if (teil.contains("^")) {
                 highest = Double.parseDouble(teil.split("\\^")[1]) > highest ? Double.parseDouble(teil.split("\\^")[1]) : highest;
-            } else if (!teil.contains("^") && Pattern.compile("[a-z]").matcher(teil).find()) {
+            } else if (!teil.contains("^") && Pattern.compile("[a-zA-Z]").matcher(teil).find()) {
                 highest = 1 > highest ? 1 : highest;
             }
         }
@@ -98,14 +98,14 @@ class Polynom {
      *        The factor from the element
      */
     static double getFaktor(String in) {
-        if(in.matches("[+-][0-9]+[.]*[0-9]*[a-z]\\^[0-9]+[.]*[0-9]*")) {
-            return Double.parseDouble(in.split("[a-z]")[0]);
-        } else if (in.matches("[+-][a-z]\\^[0-9]+[.]*[0-9]*")) {
-            return Double.parseDouble(in.split("[a-z]")[0] + 1.0);
-        } else if (in.matches("[+-][0-9]+[.]*[0-9]*[a-z]")) {
-            return Double.parseDouble(in.split("[a-z]")[0]);
-        } else if (in.matches("[+-][a-z]")) {
-            return Double.parseDouble(in.split("[a-z]")[0] + 1.0);
+        if(in.matches("[+-][0-9]+[.]*[0-9]*[a-zA-Z]\\^[0-9]+[.]*[0-9]*")) {
+            return Double.parseDouble(in.split("[a-zA-Z]")[0]);
+        } else if (in.matches("[+-][a-zA-Z]\\^[0-9]+[.]*[0-9]*")) {
+            return Double.parseDouble(in.split("[a-zA-Z]")[0] + 1.0);
+        } else if (in.matches("[+-][0-9]+[.]*[0-9]*[a-zA-Z]")) {
+            return Double.parseDouble(in.split("[a-zA-Z]")[0]);
+        } else if (in.matches("[+-][a-zA-Z]")) {
+            return Double.parseDouble(in.split("[a-zA-Z]")[0] + 1.0);
         } else if (in.matches("[+-][0-9]+[.]*[0-9]*")){
             return 0;
         } else {
@@ -121,15 +121,15 @@ class Polynom {
      *        The exponent from the element
      */
     static double getExponent(String in) {
-        if(in.matches("[+-][0-9]+[.]*[0-9]*[a-z]\\^[0-9]+[.]*[0-9]*")) {
+        if(in.matches("[+-][0-9]+[.]*[0-9]*[a-zA-Z]\\^[0-9]+[.]*[0-9]*")) {
             return Double.parseDouble(in.split("\\^")[1]);
-        } else if (in.matches("[+-][a-z]\\^[0-9]+[.]*[0-9]*")) {
+        } else if (in.matches("[+-][a-zA-Z]\\^[0-9]+[.]*[0-9]*")) {
             return Double.parseDouble(in.split("\\^")[1]);
-        } else if (in.matches("[+-][0-9]+[a-z]")) {
+        } else if (in.matches("[+-][0-9]+[a-zA-Z]")) {
             return 1.0;
-        } else if (in.matches("[+-][a-z]")) {
+        } else if (in.matches("[+-][a-zA-Z]")) {
             return 1.0;
-        } else if (in.matches("[+-][0-9]+[.]*[0-9]*[a-z]")){
+        } else if (in.matches("[+-][0-9]+[.]*[0-9]*[a-zA-Z]")){
             return 1.0;
         } else if (in.matches("[+-][0-9]+[.]*[0-9]*")){
             return 0;
