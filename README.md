@@ -8,10 +8,11 @@ Documentation:
   - PolyMain.getVersion() returns the library version
   - PolyMain.runGui() runs a little JFrame window with that you can directly calculate something and see the output.
     It also contains an Error Logger, if something goes wrong, create an Issue with your Log on my Github page
-  - PolyMain.validateInput(String input) checks if the given String is a valid Polynom and returns an Integer:
+  - PolyMain.validateInput(String... input) checks if the given Strings are valid Polynoms and returns an Integer:
      - 0: The String is valid
-     - 1: The elements in the String have a wrong syntax
-     - 2: The order of each exponent is wrong (expo1 > expo2 > expo3 > etc.)
+     - 1: The elements in the String have a wrong syntax -> Invalid
+     - 2: The order of each exponent is wrong (expo1 > expo2 > expo3 > etc.) -> Invalid
+     - 3: More than one variable used (only x's or y's etc. but not various) -> Invalid
   - PolyMain.runMainLoop(String polynom1, String polynom2, boolean fullOutput) returns if fullOutput is true the formatted result of the division between polynom1 and polynom2 or if fullOutput is false only the result.
 
 The GUI:
