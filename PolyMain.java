@@ -9,10 +9,11 @@ public class PolyMain {
     /**
      * This String contains the Version of the Library
      */
-    private static final String VERSION = "0.92 [BETA]";
+    private static final String VERSION = "0.93 [BETA]";
     /**
      * This String contains the Variable that is used in the output
-     * Later it will contain the Variable that is used by the user, but that's not implemented yet
+     * It will be set in the validateInput Method
+     * Default: x
      */
     public static String usedVariable = "x";
 
@@ -21,14 +22,14 @@ public class PolyMain {
      * @param args
      *        Program arguments
      */
-    public static void main(String[] args) {
+    //public static void main(String[] args) {
         //runGui();
-        //System.out.println(runMainLoop("x^2+2x", "x-1", true));
-        //System.out.println(validateInput("3x^2.4-4x^2.2+x^2"));
+        //System.out.println("Valid: " + validateInput("3y^2+y", "y"));
+        //System.out.println(runMainLoop("3y^2+y", "y", true));
         //System.out.println(Helper.cleaned(PolynomMath.differenz("3x^3+x", "x^2+3x")));
         //System.out.println(Helper.cleaned(PolynomMath.division("+2x", "+x")));
         //System.out.println(PolynomMath.differenz("+4x^2+3", "+4x"));
-    }
+    //}
 
     /**
      * A Method to get the Version of the Library
@@ -40,31 +41,53 @@ public class PolyMain {
     }
 
     /**
-     * This Method validates a given String
-     * It returns an Integer indicating the valid or invalid state of the given String
+     * This Method validates all given Strings
+     * It also sets the usedVariable that will be used in the output later on
+     * It returns an Integer indicating the valid or invalid state of the given Strings
      * @param input
-     *        The String that should be validated
+     *        The Strings that should be validated
      * @return
      *        0: Valid Polynom -> Valid
      *        1: Wrong Polynom Syntax -> Invalid
      *        2: Not in the right order (exponent1 > exponent2 ...) -> Invalid
+     *        3: More than one variable used (only x's or y's etc. but not both) -> Invalid
      */
-    public static int validateInput(String input) {
+    public static int validateInput(String... input) {
+        usedVariable = "";
 
-        if (Helper.trimAll(input).matches("([+-]?[0-9]*[.]?[0-9]*[a-z]?[\\^]?[0-9]*[.]?[0-9]*)?([+-][0-9]*[.]?[0-9]*[a-z]?[\\^]?[0-9]*[.]?[0-9]*)*")) {
+        for (String currInput : input) {
 
-            double highest = Polynom.deg(input)+1;
+            if (Helper.trimAll(currInput).matches("([+-]?[0-9]*(\\.[0-9]+)?[a-z]?(\\^[0-9]+(\\.[0-9]+)?)?)?([+-][0-9]*(\\.[0-9]+)?[a-z]?(\\^[0-9]+(\\.[0-9]+)?)?)*")) {
 
-            for (String s : Polynom.splitPolynom(input)) {
-                if (Polynom.getExponent(s) < highest) highest = Polynom.getExponent(s);
-                else return 2; //order of each exponent is wrong (expo1 > expo2 > expo3)
+                double highest = Polynom.deg(currInput)+1;
+
+                for (String s : Polynom.splitPolynom(currInput)) {
+                    if (Polynom.getExponent(s) < highest) highest = Polynom.getExponent(s);
+                    else return 2; //order of each exponent is wrong (expo1 > expo2 > expo3)
+
+
+                    for (int j = 0; j < currInput.toCharArray().length; j++) {
+                        if ((currInput.toCharArray()[j]+"").matches("[a-z]")) {
+                            if (usedVariable.isEmpty()) {
+                                usedVariable = currInput.toCharArray()[j]+"";
+                                continue;
+                            }
+
+                            if (!usedVariable.equals(currInput.toCharArray()[j]+"")) return 3; // More than one variable used (only x's or y's etc. but not both)
+                        }
+                    }
+                }
+
+                //Letzte Überprüfung fertig
+                if (input[input.length-1].equals(currInput)) return 0; //valid
+
+            } else {
+                return 1; //wrong syntax of the elements
             }
 
-            return 0; //valid
-
-        } else {
-            return 1; //wrong syntax of the elements
         }
+
+        return 1; //Default invalid
 
     }
 
@@ -161,8 +184,7 @@ public class PolyMain {
 
             formatted_output += usedPolynom1.cleaned() + "\n"; // Adding the calculated value from step 3 to the formatted output
 
-        } while (Polynom.deg(usedPolynom1.getWert()) >= Polynom.deg(usedPolynom2.getWert()) &&
-                !(Polynom.splitPolynom(usedPolynom1.getWert()).length == 1 && Polynom.splitPolynom(usedPolynom2.getWert()).length == 1));
+        } while (Polynom.deg(usedPolynom1.getWert()) >= Polynom.deg(usedPolynom2.getWert()) && !usedPolynom1.cleaned().equals("+0"));
 
 
         // This compiles all other components into the output
