@@ -51,11 +51,11 @@ class Helper {
 
         for (int i = 0; i < t.length; i++) {
 
-            if (t[i].matches("[+-]?[0]+[a-z].*")) t[i] = "";
-            if (t[i].matches(".*[a-z]\\^0")) t[i] = t[i].split("[a-z]")[0];
+            if (t[i].matches("[+-]?[0]+[a-zA-Z].*")) t[i] = "";
+            if (t[i].matches(".*[a-zA-Z]\\^0")) t[i] = t[i].split("[a-zA-Z]")[0];
 
-            if (t[i].matches(".*[a-z]\\^1")) t[i] = t[i].split("\\^")[0];
-            if (t[i].matches("[+-][1][a-z].*")) t[i] = t[i].replace("1", "");
+            if (t[i].matches(".*[a-zA-Z]\\^1")) t[i] = t[i].split("\\^")[0];
+            if (t[i].matches("[+-][1][a-zA-Z].*")) t[i] = t[i].replace("1", "");
 
             if (t[i].equals("+")) t[i] = "+0";
 
