@@ -23,9 +23,12 @@ public class PolyMain {
      *        Program arguments
      */
     //public static void main(String[] args) {
+        //String test1 = "2x^3-34";
+        //String test2 = "2";
+
         //runGui();
-        //System.out.println("Valid: " + validateInput("2Z", "Z"));
-        //System.out.println(runMainLoop("2Z", "Z", true));
+        //System.out.println("Valid: " + validateInput(test1, test2));
+        //System.out.println(runMainLoop(test1, test2, true));
         //System.out.println(Helper.cleaned(PolynomMath.differenz("3x^3+x", "x^2+3x")));
         //System.out.println(Helper.cleaned(PolynomMath.division("+2x", "+x")));
         //System.out.println(PolynomMath.differenz("+4x^2+3", "+4x"));
@@ -141,7 +144,8 @@ public class PolyMain {
         Polynom usedPolynom2 = new Polynom(polynom2.getWert());
 
 
-        do {
+        while (Polynom.deg(usedPolynom1.getWert()) >= Polynom.deg(usedPolynom2.getWert()) && !usedPolynom1.cleaned().equals("+0")) {
+
             /*                         Step 1                             */
             /* Dividing the highest Exponential Element from each Polynom */
             String t1 = PolynomMath.division(
@@ -184,7 +188,7 @@ public class PolyMain {
 
             formatted_output += usedPolynom1.cleaned() + "\n"; // Adding the calculated value from step 3 to the formatted output
 
-        } while (Polynom.deg(usedPolynom1.getWert()) >= Polynom.deg(usedPolynom2.getWert()) && !usedPolynom1.cleaned().equals("+0"));
+        }
 
 
         // This compiles all other components into the output
