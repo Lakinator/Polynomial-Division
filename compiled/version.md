@@ -1,1 +1,1 @@
-# VERSION: 0.93 [BETA]
+# VERSION: 0.94 [BETA]
