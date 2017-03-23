@@ -9,7 +9,7 @@ public class PolyMain {
     /**
      * This String contains the Version of the Library
      */
-    private static final String VERSION = "0.93 [BETA]";
+    private static final String VERSION = "0.94 [BETA]";
     /**
      * This String contains the Variable that is used in the output
      * It will be set in the validateInput Method
@@ -23,8 +23,8 @@ public class PolyMain {
      *        Program arguments
      */
     //public static void main(String[] args) {
-        //String test1 = "2x^3-34";
-        //String test2 = "2";
+        //String test1 = "x-3x^3+2";
+        //String test2 = "-2+x^3-3x^1";
 
         //runGui();
         //System.out.println("Valid: " + validateInput(test1, test2));
@@ -52,46 +52,10 @@ public class PolyMain {
      * @return
      *        0: Valid Polynom -> Valid
      *        1: Wrong Polynom Syntax -> Invalid
-     *        2: Not in the right order (exponent1 > exponent2 ...) -> Invalid
-     *        3: More than one variable used (only x's or y's etc. but not both) -> Invalid
+     *        2: More than one variable used (only x's or y's etc. but not both) -> Invalid
      */
     public static int validateInput(String... input) {
-        usedVariable = "";
-
-        for (String currInput : input) {
-
-            if (Helper.trimAll(currInput).matches("([+-]?[0-9]*(\\.[0-9]+)?[a-zA-Z]?(\\^[0-9]+(\\.[0-9]+)?)?)?([+-][0-9]*(\\.[0-9]+)?[a-zA-Z]?(\\^[0-9]+(\\.[0-9]+)?)?)*")) {
-
-                double highest = Polynom.deg(currInput)+1;
-
-                for (String s : Polynom.splitPolynom(currInput)) {
-                    if (Polynom.getExponent(s) < highest) highest = Polynom.getExponent(s);
-                    else return 2; //order of each exponent is wrong (expo1 > expo2 > expo3)
-
-
-                    for (int j = 0; j < currInput.toCharArray().length; j++) {
-                        if ((currInput.toCharArray()[j]+"").matches("[a-zA-Z]")) {
-                            if (usedVariable.isEmpty()) {
-                                usedVariable = currInput.toCharArray()[j]+"";
-                                continue;
-                            }
-
-                            if (!usedVariable.equals(currInput.toCharArray()[j]+"")) return 3; // More than one variable used (only x's or y's etc. but not both)
-                        }
-                    }
-                }
-
-                //Letzte Überprüfung fertig
-                if (input[input.length-1].equals(currInput)) return 0; //valid
-
-            } else {
-                return 1; //wrong syntax of the elements
-            }
-
-        }
-
-        return 1; //Default invalid
-
+        return Validator.validateInput(input);
     }
 
     /**
@@ -132,10 +96,10 @@ public class PolyMain {
         String formatted_output = "&poly1 : &poly2 = &erg &rest\n";
 
         /*
-         * Initializing each Polynom
+         * Initializing each Polynom and sort it
          */
-        polynom1 = new Polynom(poly1);
-        polynom2 = new Polynom(poly2);
+        polynom1 = new Polynom(PolynomSorter.sortPolynom(poly1));
+        polynom2 = new Polynom(PolynomSorter.sortPolynom(poly2));
 
         /*
          * Splitting each Polynom in a new Polynom, that will be used and changed in the main loop
