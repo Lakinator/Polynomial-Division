@@ -9,7 +9,7 @@ public class PolyMain {
     /**
      * This String contains the Version of the Library
      */
-    private static final String VERSION = "0.94 [BETA]";
+    private static final String VERSION = "0.95 [BETA]";
     /**
      * This String contains the Variable that is used in the output
      * It will be set in the validateInput Method
@@ -24,7 +24,7 @@ public class PolyMain {
      */
     //public static void main(String[] args) {
         //String test1 = "x-3x^3+2";
-        //String test2 = "-2+x^3-3x^1";
+        //String test2 = "-2+x^3+3x^1";
 
         //runGui();
         //System.out.println("Valid: " + validateInput(test1, test2));
@@ -52,7 +52,7 @@ public class PolyMain {
      * @return
      *        0: Valid Polynom -> Valid
      *        1: Wrong Polynom Syntax -> Invalid
-     *        2: More than one variable used (only x's or y's etc. but not both) -> Invalid
+     *        2: More than one variable used (only x's or y's etc. but not more than one) -> Invalid
      */
     public static int validateInput(String... input) {
         return Validator.validateInput(input);
@@ -91,12 +91,12 @@ public class PolyMain {
         Polynom polynom2;
         /*
          * This String is going to contain the result of the calculation plus the formatted calculation that is used in the GUI output
-         * It's also the return variable of the mainLoop
+         * It's also the return variable of the mainLoop if fullOutput is true
          */
         String formatted_output = "&poly1 : &poly2 = &erg &rest\n";
 
         /*
-         * Initializing each Polynom and sort it
+         * Initializing each Polynom and sorting it
          */
         polynom1 = new Polynom(PolynomSorter.sortPolynom(poly1));
         polynom2 = new Polynom(PolynomSorter.sortPolynom(poly2));
@@ -104,17 +104,17 @@ public class PolyMain {
         /*
          * Splitting each Polynom in a new Polynom, that will be used and changed in the main loop
          */
-        Polynom usedPolynom1 = new Polynom(polynom1.getWert());
-        Polynom usedPolynom2 = new Polynom(polynom2.getWert());
+        Polynom usedPolynom1 = new Polynom(polynom1);
+        Polynom usedPolynom2 = new Polynom(polynom2);
 
 
-        while (Polynom.deg(usedPolynom1.getWert()) >= Polynom.deg(usedPolynom2.getWert()) && !usedPolynom1.cleaned().equals("+0")) {
+        while (usedPolynom1.getDeg() >= usedPolynom2.getDeg() && !usedPolynom1.cleaned().equals("+0")) {
 
             /*                         Step 1                             */
             /* Dividing the highest Exponential Element from each Polynom */
             String t1 = PolynomMath.division(
-                                            Helper.biggestExponentialElementFromPolynom(usedPolynom1.getWert()), //Divident
-                                            Helper.biggestExponentialElementFromPolynom(usedPolynom2.getWert())  //Divisor
+                                            Helper.biggestExponentialElementFromPolynom(usedPolynom1.getValue()), //Divident
+                                            Helper.biggestExponentialElementFromPolynom(usedPolynom2.getValue())  //Divisor
                                             );
             /*                                                            */
 
@@ -137,12 +137,12 @@ public class PolyMain {
 
             /*                              Step 3                          */
             /* Setting the used polynom to the new subtracted polynom value */
-            usedPolynom1.setWert(
+            usedPolynom1.setValue(
                                 // Cleaning the result
                                 Helper.clean(
-                                            // Subtracting the old value with the result from step 2
+                                            // Subtracting the result from step 2 from the old value
                                             PolynomMath.differenz(
-                                                                 usedPolynom1.getWert(),
+                                                                 usedPolynom1.getValue(),
                                                                  t2
                                                                  )
                                             )
@@ -156,9 +156,9 @@ public class PolyMain {
 
 
         // This compiles all other components into the output
-        formatted_output = Helper.compileFormattedOutput(formatted_output, polynom1, polynom2, ergebnis, usedPolynom1.getWert());
+        formatted_output = Helper.compileFormattedOutput(formatted_output, polynom1, polynom2, ergebnis, usedPolynom1.getValue());
 
-        return fullOutput ? formatted_output : Helper.compileOutput("&erg &rest", polynom2, ergebnis, usedPolynom1.getWert());
+        return fullOutput ? formatted_output : Helper.compileOutput("&erg &rest", polynom2, ergebnis, usedPolynom1.getValue());
     }
 
 }
