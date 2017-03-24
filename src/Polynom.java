@@ -8,22 +8,32 @@ import java.util.regex.Pattern;
  */
 
 class Polynom {
-    private String wert;
+    private String value;
+
 
     Polynom() {
-        wert = "";
+        value = "";
     }
 
-    Polynom(String wert) {
-        this.wert = wert;
+    Polynom(String value) {
+        this.value = value;
     }
 
-    String getWert() {
-        return wert;
+    Polynom(Polynom polynom) {
+        this.value = polynom.getValue();
     }
 
-    void setWert(String wert) {
-        this.wert = wert;
+
+    String getValue() {
+        return value;
+    }
+
+    void setValue(String value) {
+        this.value = value;
+    }
+
+    double getDeg() {
+        return deg(this.value);
     }
 
     /**
@@ -31,7 +41,7 @@ class Polynom {
      *        A cleaned version of the saved String in the Polynom
      */
     String cleaned() {
-        return Helper.clean(this.wert);
+        return Helper.clean(this.value);
     }
 
     /**
@@ -52,9 +62,7 @@ class Polynom {
             //System.out.println("Java 7");
 
             out_java7 = new String[out.length - 1];
-            for (int i = 0; i < out_java7.length; i++) {
-                out_java7[i] = out[i + 1];
-            }
+            System.arraycopy(out, 1, out_java7, 0, out_java7.length);
 
             if (!out_java7[0].startsWith("+") && !out_java7[0].startsWith("-") ) out[0] = "+" + out[0]; // Adds a "+" if there is no "+" or "-" in front of the first element
             return out_java7;
@@ -62,19 +70,19 @@ class Polynom {
             //System.out.println("Java 8");
 
             if (!out[0].startsWith("+") && !out[0].startsWith("-") ) out[0] = "+" + out[0]; // Adds a "+" if there is no "+" or "-" in front of the first element
+            return out;
         }
 
-        return out;
     }
 
     /**
      *
      * @param s
-     *        The Polynom String element from which you want to know the degree
+     *        The Polynom String from which you want to know the degree
      * @return
      *        The Polynom degree
      */
-    static Double deg(String s) {
+    static double deg(String s) {
 
         double highest = 0;
         String[] alleTeile = splitPolynom(s);
@@ -93,11 +101,12 @@ class Polynom {
     /**
      *
      * @param in
-     *        The Polynom String element from which you want to know the factor
+     *        The Polynom String element from which you want to know the coefficient
      * @return
-     *        The factor from the element
+     *        The coefficient from the element
+     *        It returns 0 if there is no variable in the String, that means the String contains only a number
      */
-    static double getFaktor(String in) {
+    static double getCoefficient(String in) {
         if(in.matches("[+-][0-9]+[.]*[0-9]*[a-zA-Z]\\^[0-9]+[.]*[0-9]*")) {
             return Double.parseDouble(in.split("[a-zA-Z]")[0]);
         } else if (in.matches("[+-][a-zA-Z]\\^[0-9]+[.]*[0-9]*")) {
@@ -119,6 +128,7 @@ class Polynom {
      *        The Polynom String element from which you want to know the exponent
      * @return
      *        The exponent from the element
+     *        It returns 0 if there is no variable in the String, that means the String contains only a number
      */
     static double getExponent(String in) {
         if(in.matches("[+-][0-9]+[.]*[0-9]*[a-zA-Z]\\^[0-9]+[.]*[0-9]*")) {
