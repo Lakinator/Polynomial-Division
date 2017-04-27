@@ -9,7 +9,7 @@ public class PolyMain {
     /**
      * This String contains the Version of the Library
      */
-    private static final String VERSION = "0.95 [BETA]";
+    private static final String VERSION = "0.96 [BETA]";
     /**
      * This String contains the Variable that is used in the output
      * It will be set in the validateInput Method
@@ -28,7 +28,7 @@ public class PolyMain {
 
         //runGui();
         //System.out.println("Valid: " + validateInput(test1, test2));
-        //System.out.println(runMainLoop(test1, test2, true));
+        //System.out.println(calculate(test1, test2, true));
         //System.out.println(Helper.cleaned(PolynomMath.differenz("3x^3+x", "x^2+3x")));
         //System.out.println(Helper.cleaned(PolynomMath.division("+2x", "+x")));
         //System.out.println(PolynomMath.differenz("+4x^2+3", "+4x"));
@@ -60,9 +60,27 @@ public class PolyMain {
 
     /**
      * This just runs the GUI
+     * -> Currently outdated!
      */
+    @Deprecated
     public static void runGui() {
         new GUI();
+    }
+
+    /**
+     * This Method is the old name for the main calulation step. Use calculate instead
+     * @param poly1
+     *        The first Polynom String (Divident)
+     * @param poly2
+     *        The second Polynom String (Divisor)
+     * @param fullOutput
+     *        This boolean indicates whether the full formatted output or only the result should be returned
+     * @return
+     *        The formatted output String with the result and all calculation steps
+     */
+    @Deprecated
+    public static String runMainLoop(String poly1, String poly2, boolean fullOutput) {
+        return calculate(poly1, poly2, fullOutput);
     }
 
     /**
@@ -76,7 +94,7 @@ public class PolyMain {
      * @return
      *        The formatted output String with the result and all calculation steps
      */
-    public static String runMainLoop(String poly1, String poly2, boolean fullOutput) {
+    public static String calculate(String poly1, String poly2, boolean fullOutput) {
         /*
          * This String is going to contain the result of the calculation
          */
@@ -113,7 +131,7 @@ public class PolyMain {
             /*                         Step 1                             */
             /* Dividing the highest Exponential Element from each Polynom */
             String t1 = PolynomMath.division(
-                                            Helper.biggestExponentialElementFromPolynom(usedPolynom1.getValue()), //Divident
+                                            Helper.biggestExponentialElementFromPolynom(usedPolynom1.getValue()), //Dividend
                                             Helper.biggestExponentialElementFromPolynom(usedPolynom2.getValue())  //Divisor
                                             );
             /*                                                            */
