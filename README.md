@@ -13,10 +13,10 @@ Documentation:
      - 0: The Strings are valid
      - 1: The elements in one of the Strings have a wrong syntax -> Invalid
      - 2: More than one variable was used (only x's or y's etc. but not various) -> Invalid
-  - PolyMain.calculate(String polynom1, String polynom2, boolean fullOutput) returns 
-    if fullOutput is true the formatted result of the division between polynom1 and polynom2 or 
-    if fullOutput is false only the result.
-    Note: PolyMain.runMainLoop(String polynom1, String polynom2, boolean fullOutput) still works but shouldn't be used anymore
+  - PolyMain.calculate(String polynom1, String polynom2, boolean fullOutput) returns if fullOutput is: 
+    - true the formatted result of the division between polynom1 and polynom2 or 
+    - false only the result.
+  - Note: PolyMain.runMainLoop(String polynom1, String polynom2, boolean fullOutput) still works but shouldn't be used anymore
 
 The (outdated) Gui:
 
