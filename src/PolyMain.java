@@ -1,5 +1,3 @@
-package net.bplaced.lakinator.PolynomLib;
-
 /**
  * 08.03.2017
  * Created by user Schalk (Lukas Schalk).
@@ -9,7 +7,7 @@ public class PolyMain {
     /**
      * This String contains the Version of the Library
      */
-    private static final String VERSION = "0.96 [BETA]";
+    private static final String VERSION = "0.97 [BETA]";
     /**
      * This String contains the Variable that is used in the output
      * It will be set in the validateInput Method
@@ -22,17 +20,17 @@ public class PolyMain {
      * @param args
      *        Program arguments
      */
-    //public static void main(String[] args) {
-        //String test1 = "x-3x^3+2";
-        //String test2 = "-2+x^3+3x^1";
+    /*public static void main(String[] args) {
+        String test1 = "x-3x^3+2";
+        String test2 = "-2+x^3+3x^1";
 
         //runGui();
-        //System.out.println("Valid: " + validateInput(test1, test2));
-        //System.out.println(calculate(test1, test2, true));
-        //System.out.println(Helper.cleaned(PolynomMath.differenz("3x^3+x", "x^2+3x")));
-        //System.out.println(Helper.cleaned(PolynomMath.division("+2x", "+x")));
-        //System.out.println(PolynomMath.differenz("+4x^2+3", "+4x"));
-    //}
+        System.out.println("Valid: " + validateInput(test1, test2));
+        System.out.println(calculate(test1, test2, true));
+        System.out.println(Helper.clean(PolynomMath.differenz("3x^3+x", "x^2+3x")));
+        System.out.println(Helper.clean(PolynomMath.division("+2x", "+x")));
+        System.out.println(PolynomMath.differenz("+4x^2+3", "+4x"));
+    }*/
 
     /**
      * A Method to get the Version of the Library
