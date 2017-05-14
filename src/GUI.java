@@ -43,13 +43,15 @@ class GUI {
 
         startBtn = new JButton("Berechne");
         startBtn.setBounds(130, 80, 100, 40);
-        startBtn.addActionListener( new ActionListener() {
+        startBtn.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                String erg;
+
                 if (!inputPoly1.getText().isEmpty() && !inputPoly2.getText().isEmpty()) {
                     try {
-                        PolyMain.runMainLoop(inputPoly1.getText(), inputPoly2.getText(), true);
+                        erg = PolynomMain.calculate(inputPoly1.getText(), inputPoly2.getText(), true);
                     } catch (Exception ex) {
 
                         if (ErrorLogger.openLog()) {
@@ -59,12 +61,12 @@ class GUI {
                             System.err.println("Couldn't open ErrorLog File");
                         }
 
-                        PolyMain.OUTPUT_TO_GUI = "No output to display.\nMore in the log.txt File: " + ErrorLogger.errFile.getPath() + "\n(Error: " + ex.getMessage() + ")";
+                        erg = "No output to display.\nMore in the log.txt File: " + ErrorLogger.errFile.getPath() + "\n(Error: " + ex.getMessage() + ")";
                         ex.printStackTrace();
                     }
-                } else PolyMain.OUTPUT_TO_GUI  = "No output to display (Empty Input)";
+                } else erg = "No output to display (Empty Input)";
 
-                outputArea.setText(PolyMain.OUTPUT_TO_GUI);
+                outputArea.setText(erg);
             }
         });
 
@@ -75,7 +77,7 @@ class GUI {
         outputArea.setBounds(10, 160, 375, 290);
         outputArea.setEditable(false);
 
-        version_lbl = new JLabel("Lukas Schalk | 2017 | Version: " + PolyMain.getVersion());
+        version_lbl = new JLabel("Lukas Schalk | 2017 | Version: " + PolynomMain.getVersion());
         version_lbl.setBounds(10, 450, 300, 20);
 
 
