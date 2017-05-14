@@ -1,5 +1,3 @@
-package net.bplaced.lakinator.PolynomLib;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.sql.Timestamp;
