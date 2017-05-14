@@ -3,7 +3,7 @@
  * Created by user Schalk (Lukas Schalk).
  */
 
-public class PolyMain {
+public class PolynomMain {
     /**
      * This String contains the Version of the Library
      */
