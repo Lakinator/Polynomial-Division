@@ -1,3 +1,5 @@
+package Polynomdivision;
+
 import java.util.regex.Pattern;
 
 /**
