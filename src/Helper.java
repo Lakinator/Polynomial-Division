@@ -1,5 +1,3 @@
-package net.bplaced.lakinator.PolynomLib;
-
 /**
  * 11.03.2017
  * Created by user Schalk (Lukas Schalk).
