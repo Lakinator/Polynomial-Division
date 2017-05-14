@@ -1,5 +1,3 @@
-package net.bplaced.lakinator.PolynomLib;
-
 import java.util.regex.Pattern;
 
 /**
