@@ -29,8 +29,8 @@ public class PolynomMain {
         //runGui();
         System.out.println("Valid: " + validateInput(test1, test2));
         System.out.println(calculate(test1, test2, true));
-        System.out.println(Helper.clean(PolynomMath.differenz("3x^3+x", "x^2+3x")));
-        System.out.println(Helper.clean(PolynomMath.division("+2x", "+x")));
+        System.out.println(Helper.clean(Polynomdivision.PolynomMath.differenz("3x^3+x", "x^2+3x")));
+        System.out.println(Helper.clean(Polynomdivision.PolynomMath.division("+2x", "+x")));
         System.out.println(PolynomMath.differenz("+4x^2+3", "+4x"));
     }*/
 
@@ -141,7 +141,7 @@ public class PolynomMain {
 
 
             /*                                 Step 2                                            */
-            /* Multiplicating the result from step 1 with the whole second polynom (The divisor) */
+            /* Multiplicating the result from step 1 with the whole second Polynom (The divisor) */
             String t2 = PolynomMath.multiplizieren(
                                                   Helper.clean(t1),
                                                   usedPolynom2.cleaned()
