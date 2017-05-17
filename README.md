@@ -15,6 +15,7 @@ A library to calculate Polynomdivisions
     System.out.println("Library Version: " + PolynomMain.getVersion())
     ```
   - PolynomMain.validateInput(String... input) checks if the given Strings are valid Polynoms and returns an Integer:
+  
     ```Java
     String polynom1 = "3x^2-4x+2";
     String polynom2 = "x-1";
@@ -27,11 +28,23 @@ A library to calculate Polynomdivisions
      > Note: If you don't validate your Strings before you divide them, the variable that will be used in the output from calculation is default *x*. In certain circumstances the calculation step can throw an exception if one of the two Strings have a wrong polynom syntax
   - PolynomMain.calculate(String polynom1, String polynom2, boolean fullOutput) returns the result as a String: 
   
+    ```Java
+    String polynom1 = "3x^2-4x+2";
+    String polynom2 = "x-1";
+    
+    int valid = PolynomMain.validateInput(polynom1, polynom2);
+    
+    if(valid == 0) {
+      String output = PolynomMain.calculate(polynom1, polynom2, true);
+      System.out.println(output);
+    }
+    ```
     |fullOutput == true|fullOutput == false|
     |---|---|
     |returns the ***fully formatted*** result of the division between polynom1 and polynom2|returns ***only*** the result of the division between polynom1 and polynom2|
     
     > Note: PolynomMain.runMainLoop(String polynom1, String polynom2, boolean fullOutput) still works but shouldn't be used anymore
+
 
 
 ### The (outdated) Gui:
