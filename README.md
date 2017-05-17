@@ -43,6 +43,24 @@ A library to calculate Polynomdivisions
     |---|---|
     |returns the ***fully formatted*** result of the division between polynom1 and polynom2|returns ***only*** the result of the division between polynom1 and polynom2|
     
+     ```
+     fullOutput == true:
+     
+     +3x^2-4x+2 : +x-1 = +3x-1 + (+1/+x-1)
+     -(+3x^2-3x)
+     ------
+     -x+2
+     -(-x+1)
+     ------
+     +1
+     
+     
+     fullOutput == false:
+     
+     +3x-1 + (+1/+x-1)
+    
+     ```
+    
     > Note: PolynomMain.runMainLoop(String polynom1, String polynom2, boolean fullOutput) still works but shouldn't be used anymore
 
 
