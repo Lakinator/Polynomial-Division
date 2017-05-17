@@ -9,11 +9,11 @@ A library to calculate Polynomdivisions, you can find the latest compiled versio
   import Polynomdivision.PolynomMain;
   ```
  #### After that you can call 4 static methods with this library:
-  - *PolynomMain.getVersion()* returns the library version
+  - *PolynomMain.getVersion()* returns the library version:
   
     ```Java
-    System.out.println("Library Version: " + PolynomMain.getVersion());
-    ```
+    System.out.println("Library Version: " + PolynomMain.getVersion());
+    ```
   - *PolynomMain.validateInput(String... input)* checks if the given Strings are valid Polynoms and returns an Integer:
   
     ```Java
