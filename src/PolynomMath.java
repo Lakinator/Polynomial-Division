@@ -15,17 +15,17 @@ class PolynomMath {
         } else if (Polynom.getFaktor(divident) != 0 && Polynom.getFaktor(divisor) != 0 && Polynom.getExponent(divident) != 0 && Polynom.getExponent(divisor) != 0) {
             double temp = Polynom.getFaktor(divident) / Polynom.getFaktor(divisor);
             output += temp >= 0 ? "+" + temp : temp;
-            output += PolyMain.usedVariable + "^"; //Shiet
+            output += PolyMain.usedVariable + "^";
             output += Polynom.getExponent(divident) - Polynom.getExponent(divisor);
         } else if (Polynom.getFaktor(divident) == 0 && Polynom.getFaktor(divisor) != 0 && Polynom.getExponent(divident) == 0 && Polynom.getExponent(divisor) != 0) {
             double temp = Double.parseDouble(divident) / Polynom.getFaktor(divisor);
             output += temp >= 0 ? "+" + temp : temp;
-            output += PolyMain.usedVariable + "^"; //Shiet
+            output += PolyMain.usedVariable + "^";
             output += Polynom.getExponent(divisor);
         } else if (Polynom.getFaktor(divident) != 0 && Polynom.getFaktor(divisor) == 0 && Polynom.getExponent(divident) != 0 && Polynom.getExponent(divisor) == 0) {
             double temp = Polynom.getFaktor(divident) / Double.parseDouble(divisor);
             output += temp >= 0 ? "+" + temp : temp;
-            output += PolyMain.usedVariable + "^"; //Shiet
+            output += PolyMain.usedVariable + "^";
             output += Polynom.getExponent(divident);
         }
 
@@ -46,17 +46,17 @@ class PolynomMath {
             } else if (Polynom.getFaktor(multiplikator) != 0 && Polynom.getFaktor(s) != 0 && Polynom.getExponent(multiplikator) != 0 && Polynom.getExponent(s) != 0) {
                 double temp = Polynom.getFaktor(multiplikator) * Polynom.getFaktor(s);
                 output += temp >= 0 ? "+" + temp : temp;
-                output += PolyMain.usedVariable + "^"; //Shiet
+                output += PolyMain.usedVariable + "^";
                 output += Polynom.getExponent(multiplikator) + Polynom.getExponent(s);
             } else if (Polynom.getFaktor(multiplikator) == 0 && Polynom.getFaktor(s) != 0 && Polynom.getExponent(multiplikator) == 0 && Polynom.getExponent(s) != 0) {
                 double temp = Double.parseDouble(multiplikator) * Polynom.getFaktor(s);
                 output += temp >= 0 ? "+" + temp : temp;
-                output += PolyMain.usedVariable + "^"; //Shiet
+                output += PolyMain.usedVariable + "^";
                 output += Polynom.getExponent(s);
             } else if (Polynom.getFaktor(multiplikator) != 0 && Polynom.getFaktor(s) == 0 && Polynom.getExponent(multiplikator) != 0 && Polynom.getExponent(s) == 0) {
                 double temp = Polynom.getFaktor(multiplikator) * Double.parseDouble(s);
                 output += temp >= 0 ? "+" + temp : temp;
-                output += PolyMain.usedVariable + "^"; //Shiet
+                output += PolyMain.usedVariable + "^";
                 output += Polynom.getExponent(multiplikator);
             }
         }
@@ -100,7 +100,7 @@ class PolynomMath {
             double temp = Polynom.getFaktor(einMinuend) - Polynom.getFaktor(einSubtrahend);
             if (temp != 1.0 && temp != -1.0) _output += temp >= 0 ? "+" + temp : temp;
             else _output += temp == 1.0 ? "+" : "-";
-            _output += PolyMain.usedVariable; //Shiet
+            _output += PolyMain.usedVariable;
             if (Polynom.getExponent(einMinuend) != 1.0 && Polynom.getExponent(einMinuend) != -1.0) _output += "^" + Polynom.getExponent(einMinuend);
             else if (Polynom.getExponent(einMinuend) == 1.0 || Polynom.getExponent(einMinuend) == -1.0) _output += "";
         } else if (Polynom.getExponent(einMinuend) == 0 && Polynom.getExponent(einSubtrahend) == 0 && !einMinuend.equals(einSubtrahend)) {
