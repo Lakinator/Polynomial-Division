@@ -7,51 +7,34 @@ package Polynomdivision;
 
 public class PolynomMain {
     /**
-     * This String contains the Version of the Library
+     * This string contains the version of the library
      */
-    private static final String VERSION = "0.97 [BETA]";
+    private static final String VERSION = "1.0";
     /**
-     * This String contains the Variable that is used in the output
-     * It will be set in the validateInput Method
+     * This string contains the variable that is used in the output
+     * It will be set in the validateInput method
      * Default: x
      */
-    public static String usedVariable = "x";
+    static String usedVariable = "x";
 
     /**
-     * The main loop is currently only for testing and is not in the final library compile
-     * @param args
-     *        Program arguments
-     */
-    /*public static void main(String[] args) {
-        String test1 = "x-3x^3+2";
-        String test2 = "-2+x^3+3x^1";
-
-        //runGui();
-        System.out.println("Valid: " + validateInput(test1, test2));
-        System.out.println(calculate(test1, test2, true));
-        System.out.println(Helper.clean(Polynomdivision.PolynomMath.differenz("3x^3+x", "x^2+3x")));
-        System.out.println(Helper.clean(Polynomdivision.PolynomMath.division("+2x", "+x")));
-        System.out.println(PolynomMath.differenz("+4x^2+3", "+4x"));
-    }*/
-
-    /**
-     * A Method to get the Version of the Library
+     * A method to get the version of the library
      * @return
-     *        The Version String
+     *        The version string
      */
     public static String getVersion() {
         return VERSION;
     }
 
     /**
-     * This Method validates all given Strings
+     * This method validates all given strings
      * It also sets the usedVariable that will be used in the output later on
-     * It returns an Integer indicating the valid or invalid state of the given Strings
+     * It returns an integer indicating the valid or invalid state of the given strings
      * @param input
-     *        The Strings that should be validated
+     *        The strings that should be validated
      * @return
-     *        0: Valid Polynom -> Valid
-     *        1: Wrong Polynom Syntax -> Invalid
+     *        0: Valid polynom -> Valid
+     *        1: Wrong polynom syntax -> Invalid
      *        2: More than one variable used (only x's or y's etc. but not more than one) -> Invalid
      */
     public static int validateInput(String... input) {
@@ -59,68 +42,47 @@ public class PolynomMain {
     }
 
     /**
-     * This just runs the GUI
-     * -> Currently outdated!
-     */
-    @Deprecated
-    public static void runGui() {
-        new GUI();
-    }
-
-    /**
-     * This Method is the old name for the main calulation step. Use calculate instead
+     * This method calculates the result of a division between two polynom strings and returns a formatted output string
      * @param poly1
-     *        The first Polynom String (Divident)
+     *        The first polynom string (Divident)
      * @param poly2
-     *        The second Polynom String (Divisor)
+     *        The second polynom string (Divisor)
      * @param fullOutput
      *        This boolean indicates whether the full formatted output or only the result should be returned
      * @return
-     *        The formatted output String with the result and all calculation steps
-     */
-    @Deprecated
-    public static String runMainLoop(String poly1, String poly2, boolean fullOutput) {
-        return calculate(poly1, poly2, fullOutput);
-    }
-
-    /**
-     * This Method calculates the result of a division between two Polynom Strings and returns a formatted output String
-     * @param poly1
-     *        The first Polynom String (Divident)
-     * @param poly2
-     *        The second Polynom String (Divisor)
-     * @param fullOutput
-     *        This boolean indicates whether the full formatted output or only the result should be returned
-     * @return
-     *        The formatted output String with the result and all calculation steps
+     *        The formatted output string with the result and all calculation steps
      */
     public static String calculate(String poly1, String poly2, boolean fullOutput) {
         /*
-         * This String is going to contain the result of the calculation
+         * This string is going to contain the result of the calculation
          */
-        String ergebnis = "";
+        String result = "";
         /*
-         * This Polynom is the Divident
+         * This polynom is the divident
          */
         Polynom polynom1;
         /*
-         * This Polynom is the Divisor
+         * This polynom is the divisor
          */
         Polynom polynom2;
         /*
-         * This String is going to contain the result of the calculation plus the formatted calculation that is used in the GUI output
-         * It's also the return variable of the mainLoop if fullOutput is true
+         * This string contains all calculation steps
          */
-        String formatted_output = "&poly1 : &poly2 = &erg &rest\n";
+        String calculation_steps = ""; //"&poly1 : &poly2 = &erg &rest\n"
+        /*
+         * This string contains the final return value
+         */
+        String output;
+
 
         /*
-         * Initializing each Polynom and sorting it
+         * Initializing each polynom and sorting it
          */
         polynom1 = new Polynom(PolynomSorter.sortPolynom(poly1));
         polynom2 = new Polynom(PolynomSorter.sortPolynom(poly2));
 
         /*
-         * Splitting each Polynom in a new Polynom, that will be used and changed in the main loop
+         * Setting up the polynoms, which will be used and changed in the main loop
          */
         Polynom usedPolynom1 = new Polynom(polynom1);
         Polynom usedPolynom2 = new Polynom(polynom2);
@@ -129,7 +91,7 @@ public class PolynomMain {
         while (usedPolynom1.getDeg() >= usedPolynom2.getDeg() && !usedPolynom1.cleaned().equals("+0")) {
 
             /*                         Step 1                             */
-            /* Dividing the highest Exponential Element from each Polynom */
+            /* Dividing the highest exponential element from each polynom */
             String t1 = PolynomMath.division(
                                             Helper.biggestExponentialElementFromPolynom(usedPolynom1.getValue()), //Dividend
                                             Helper.biggestExponentialElementFromPolynom(usedPolynom2.getValue())  //Divisor
@@ -137,20 +99,20 @@ public class PolynomMain {
             /*                                                            */
 
 
-            ergebnis += t1; //Adding the result from step 1 to the end result
+            result += t1; //Adding the result from step 1 to the end result
 
 
             /*                                 Step 2                                            */
-            /* Multiplicating the result from step 1 with the whole second Polynom (The divisor) */
-            String t2 = PolynomMath.multiplizieren(
+            /* Multiplicating the result from step 1 with the whole second polynom (The divisor) */
+            String t2 = PolynomMath.multiply(
                                                   Helper.clean(t1),
                                                   usedPolynom2.cleaned()
                                                   );
             /*                                                                                   */
 
 
-            formatted_output += "-(" + Helper.clean(t2) + ")\n"; // Adding the result from step 2 to the formatted output
-            formatted_output += "------\n"; // Adding a seperator
+            calculation_steps += "-(" + Helper.clean(t2) + ")\n"; // Adding the result from step 2 to the calculation steps
+            calculation_steps += "------\n"; // Adding a seperator
 
 
             /*                              Step 3                          */
@@ -159,7 +121,7 @@ public class PolynomMain {
                                 // Cleaning the result
                                 Helper.clean(
                                             // Subtracting the result from step 2 from the old value
-                                            PolynomMath.differenz(
+                                            PolynomMath.difference(
                                                                  usedPolynom1.getValue(),
                                                                  t2
                                                                  )
@@ -168,15 +130,19 @@ public class PolynomMain {
             /*                                                               */
 
 
-            formatted_output += usedPolynom1.cleaned() + "\n"; // Adding the calculated value from step 3 to the formatted output
+            calculation_steps += usedPolynom1.cleaned() + "\n"; // Adding the calculated value from step 3 to the calculation steps
 
         }
 
 
         // This compiles all other components into the output
-        formatted_output = Helper.compileFormattedOutput(formatted_output, polynom1, polynom2, ergebnis, usedPolynom1.getValue());
 
-        return fullOutput ? formatted_output : Helper.compileOutput("&erg &rest", polynom2, ergebnis, usedPolynom1.getValue());
+        if (fullOutput)
+            output = Helper.compileOutput("&dividend : &divisor = &result + &remainder\n&steps", polynom1, polynom2, result, usedPolynom1, calculation_steps);
+        else
+            output = Helper.compileOutput("&result + &remainder", polynom1, polynom2, result, usedPolynom1, calculation_steps);
+
+        return output;
     }
 
 }
