@@ -23,26 +23,17 @@ class Helper {
         return out;
     }
 
-    static String compileFormattedOutput(String output, Polynom poly1, Polynom poly2, String ergebnis, String rest) {
+    static String compileOutput(String format, Polynom dividend, Polynom divisor, String ergebnis, Polynom remainder, String calculation_steps) {
 
-        output = output.replace("&poly1", poly1.cleaned());
-        output = output.replace("&poly2", poly2.cleaned());
-        output = output.replace("&erg", Helper.clean(ergebnis));
+        format = format.replace("&dividend", dividend.cleaned());
+        format = format.replace("&divisor", divisor.cleaned());
+        format = format.replace("&result", Helper.clean(ergebnis));
+        format = format.replace("&steps", calculation_steps);
 
-        if (rest.equals("+0") || rest.equals("+") || rest.equals("0") || rest.isEmpty()) output = output.replace("&rest", "");
-        else output = output.replace("&rest", "+ (" + Helper.clean(rest) + "/" + poly2.cleaned() + ")");
+        if (remainder.getValue().equals("+0") || remainder.getValue().equals("+") || remainder.getValue().equals("0") || remainder.getValue().isEmpty()) format = format.replace("&remainder", "");
+        else format = format.replace("&remainder", "(" + remainder.cleaned() + "/" + divisor.cleaned() + ")");
 
-        return output;
-    }
-
-    static String compileOutput(String output, Polynom poly2, String ergebnis, String rest) {
-
-        output = output.replace("&erg", Helper.clean(ergebnis));
-
-        if (rest.equals("+0") || rest.equals("+") || rest.equals("0") || rest.isEmpty()) output = output.replace("&rest", "");
-        else output = output.replace("&rest", "+ (" + Helper.clean(rest) + "/" + poly2.cleaned() + ")");
-
-        return output;
+        return format;
     }
 
     static String clean(String s) {
