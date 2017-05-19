@@ -8,17 +8,17 @@ package Polynomdivision;
 class Validator {
 
     static int validateInput(String... input) {
-        PolyMain.usedVariable = "";
+        PolynomMain.usedVariable = "";
 
         for (String einInput : input) {
 
-            if (!isPolynom(einInput)) return 1; // Wrong Polynom Syntax -> Invalid
+            if (!isPolynom(einInput)) return 1; // Wrong polynom syntax -> Invalid
 
             if (!usesVariable(einInput)) return 2; // More than one variable used (only x's or y's etc. but not both) -> Invalid
 
         }
 
-        return 0; // Valid Polynom -> Valid
+        return 0; // Valid polynom -> Valid
 
     }
 
@@ -29,12 +29,12 @@ class Validator {
     private static boolean usesVariable(String polynom) {
         for (int i = 0; i < polynom.toCharArray().length; i++) {
             if ((polynom.toCharArray()[i]+"").matches("[a-zA-Z]")) {
-                if (PolyMain.usedVariable.isEmpty()) {
-                    PolyMain.usedVariable = polynom.toCharArray()[i]+"";
+                if (PolynomMain.usedVariable.isEmpty()) {
+                    PolynomMain.usedVariable = polynom.toCharArray()[i]+"";
                     continue;
                 }
 
-                if (!PolyMain.usedVariable.equals(polynom.toCharArray()[i]+"")) return false; // More than one variable used (only x's or y's etc. but not both)
+                if (!PolynomMain.usedVariable.equals(polynom.toCharArray()[i]+"")) return false; // More than one variable used (only x's or y's etc. but not both)
             }
         }
 
