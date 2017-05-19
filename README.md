@@ -1,5 +1,5 @@
 # Polynomdivision
-A library to calculate Polynomdivisions, you can find the latest compiled version [here](https://github.com/Lakinator/Polynomdivision/tree/master/compiled)
+A library to calculate polynomdivisions, you can find the latest compiled version [here](https://github.com/Lakinator/Polynomdivision/tree/master/compiled)
 
 ### API Documentation:
 - First, add the Polynomdivision.jar as an external library to your project
@@ -8,13 +8,13 @@ A library to calculate Polynomdivisions, you can find the latest compiled versio
   ```Java
   import Polynomdivision.PolynomMain;
   ```
- #### After that you can call 4 static methods with this library:
+ #### After that you can call 3 static methods with this library:
   - *PolynomMain.getVersion()* returns the library version:
   
     ```Java
     System.out.println("Library Version: " + PolynomMain.getVersion());
     ```
-  - *PolynomMain.validateInput(String... input)* checks if the given Strings are valid Polynoms and returns an Integer:
+  - *PolynomMain.validateInput(String... input)* checks if the given strings are valid polynoms and returns an integer:
   
     ```Java
     String polynom1 = "3x^2-4x+2";
@@ -24,8 +24,8 @@ A library to calculate Polynomdivisions, you can find the latest compiled versio
      | 0 | 1 | 2 |
      |---|---|---|
      |Valid|Invalid|Invalid|
-     |All Strings are valid|The elements in one of the Strings have a wrong syntax|More than one variable was used (only x's or y's etc. but not various!)|
-     > Note: If you don't validate your Strings before you divide them, the variable that will be used in the output from calculation is default *x*. In certain circumstances the calculation step can throw an exception if one of the two Strings have a wrong polynom syntax
+     |All strings are valid|The elements in one of the strings have a wrong syntax|More than one variable was used (only x's or y's etc. but not various!)|
+     > Note: If you don't validate your strings before you divide them, the variable that will be used in the output from calculation is default *x*. In certain circumstances the calculation step can throw an exception if one of the two Strings have a wrong polynom syntax
   - *PolynomMain.calculate(String polynom1, String polynom2, boolean fullOutput)* returns the result as a String: 
   
     ```Java
@@ -60,16 +60,3 @@ A library to calculate Polynomdivisions, you can find the latest compiled versio
      +3x-1 + (+1/+x-1)
     
      ```
-    
-    > Note: PolynomMain.runMainLoop(String polynom1, String polynom2, boolean fullOutput) still works but shouldn't be used anymore
-
-
-
-### The (outdated) Gui:
-
-  - *PolynomMain.runGui()* runs a little JFrame window with that you can directly calculate something and see the output.
-    It also contains an Error Logger on your Desktop calles log.txt, if something goes wrong, create an Issue with your Log on my Github page
-    
-    > BUT: The Gui is currently outdated. So only use it in certain circumstances!
-
-    ![vorschaubild](https://cloud.githubusercontent.com/assets/21976072/23831925/18405f00-072b-11e7-9927-9d69af3327f8.png)
