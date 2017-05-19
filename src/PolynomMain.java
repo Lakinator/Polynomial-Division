@@ -44,7 +44,7 @@ public class PolynomMain {
     /**
      * This method calculates the result of a division between two polynom strings and returns a formatted output string
      * @param poly1
-     *        The first polynom string (Divident)
+     *        The first polynom string (Dividend)
      * @param poly2
      *        The second polynom string (Divisor)
      * @param fullOutput
@@ -58,7 +58,7 @@ public class PolynomMain {
          */
         String result = "";
         /*
-         * This polynom is the divident
+         * This polynom is the dividend
          */
         Polynom polynom1;
         /*
