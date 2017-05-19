@@ -14,12 +14,14 @@ class PolynomSorter {
         String[] sorted_polynom = new String[split_polynom.length];
         double[] expos = new double[split_polynom.length];
 
-        for (int i = 0; i < expos.length; i++) expos[i] = Polynom.getExponent(split_polynom[i]); //Filling the Array with all Exponents from the Polynom
+        //Filling the array with all exponents from the polynom
+        for (int i = 0; i < expos.length; i++) expos[i] = Polynom.getExponent(split_polynom[i]);
 
         bubblesort(expos); //Sorting it
 
         for (int i = 0; i < expos.length; i++) {
-            sorted_polynom[i] = Helper.elementFromPolynomByExpo(polynom, expos[i]); //Filling the sorted Array with the elements from the polynom with their exponents
+            //Filling the sorted array with the elements from the polynom with their exponents
+            sorted_polynom[i] = Helper.elementFromPolynomByExpo(polynom, expos[i]);
         }
 
         return Helper.to_str(sorted_polynom);
