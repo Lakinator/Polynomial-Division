@@ -68,7 +68,7 @@ public class PolynomMain {
         /*
          * This string contains all calculation steps
          */
-        String calculation_steps = ""; //"&poly1 : &poly2 = &erg &rest\n"
+        String calculation_steps = "";
         /*
          * This string contains the final return value
          */
