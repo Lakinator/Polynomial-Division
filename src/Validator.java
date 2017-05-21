@@ -23,6 +23,20 @@ class Validator {
     }
 
     private static boolean isPolynom(String polynom) {
+        String[] splitted = Polynom.splitPolynom(polynom);
+        double[] expos = new double[splitted.length];
+        for (int i = 0; i < expos.length; i++) {
+            expos[i] = Polynom.getExponent(splitted[i]);
+        }
+
+        for (int j = 0; j < expos.length; j++) {
+            for (int k = j + 1; k < expos.length; k++) {
+                if (expos[k] == expos[j]) {
+                    return false;
+                }
+            }
+        }
+
         return Helper.trimAll(polynom).matches("([+-]?[0-9]*(\\.[0-9]+)?[a-zA-Z]?(\\^[0-9]+(\\.[0-9]+)?)?)?([+-][0-9]*(\\.[0-9]+)?[a-zA-Z]?(\\^[0-9]+(\\.[0-9]+)?)?)*");
     }
 
