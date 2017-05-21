@@ -78,8 +78,8 @@ public class PolynomMain {
         /*
          * Initializing each polynom and sorting it
          */
-        polynom1 = new Polynom(PolynomSorter.sortPolynom(poly1));
-        polynom2 = new Polynom(PolynomSorter.sortPolynom(poly2));
+        polynom1 = new Polynom(PolynomSorter.sortPolynom(Helper.clean(poly1)));
+        polynom2 = new Polynom(PolynomSorter.sortPolynom(Helper.clean(poly2)));
 
         /*
          * Setting up the polynoms, which will be used and changed in the main loop
@@ -105,8 +105,8 @@ public class PolynomMain {
             /*                                 Step 2                                            */
             /* Multiplicating the result from step 1 with the whole second polynom (The divisor) */
             String t2 = PolynomMath.multiply(
-                                             Helper.clean(t1),
-                                             usedPolynom2.cleaned()
+                                            Helper.clean(t1),
+                                            usedPolynom2.cleaned()
                                             );
             /*                                                                                   */
 
@@ -118,15 +118,15 @@ public class PolynomMain {
             /*                              Step 3                          */
             /* Setting the used polynom to the new subtracted polynom value */
             usedPolynom1.setValue(
-                                // Cleaning the result
-                                Helper.clean(
-                                            // Subtracting the result from step 2 from the old value
-                                            PolynomMath.difference(
-                                                                 usedPolynom1.getValue(),
-                                                                 t2
-                                                                 )
-                                            )
-                                );
+                                 // Cleaning the result
+                                 Helper.clean(
+                                             // Subtracting the result from step 2 from the old value
+                                             PolynomMath.difference(
+                                                                   usedPolynom1.getValue(),
+                                                                   t2
+                                                                   )
+                                             )
+                                 );
             /*                                                               */
 
 
