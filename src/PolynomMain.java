@@ -105,9 +105,9 @@ public class PolynomMain {
             /*                                 Step 2                                            */
             /* Multiplicating the result from step 1 with the whole second polynom (The divisor) */
             String t2 = PolynomMath.multiply(
-                                                  Helper.clean(t1),
-                                                  usedPolynom2.cleaned()
-                                                  );
+                                             Helper.clean(t1),
+                                             usedPolynom2.cleaned()
+                                            );
             /*                                                                                   */
 
 
