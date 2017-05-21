@@ -263,23 +263,33 @@ class PolynomMath {
         return output;
     }
 
-    static String _difference(String einMinuend, String einSubtrahend) {
+    /**
+     * TODO: Method description
+     *
+     * @param aMinuend
+     *        The minuend (only a polynom element)
+     * @param aSubtrahend
+     *        The subtrahend (only a polynom element)
+     * @return
+     *        The difference between the two inputs
+     */
+    static String _difference(String aMinuend, String aSubtrahend) {
         String _output = "";
 
         //Selber Exponent!
-        if ( Polynom.getExponent(einMinuend) != Polynom.getExponent(einSubtrahend) ) return "";
+        if ( Polynom.getExponent(aMinuend) != Polynom.getExponent(aSubtrahend) ) return "";
 
-        if (Polynom.getExponent(einMinuend) != 0 && Polynom.getExponent(einSubtrahend) != 0 && !einMinuend.equals(einSubtrahend)) {
-            double temp = Polynom.getCoefficient(einMinuend) - Polynom.getCoefficient(einSubtrahend);
+        if (Polynom.getExponent(aMinuend) != 0 && Polynom.getExponent(aSubtrahend) != 0 && !aMinuend.equals(aSubtrahend)) {
+            double temp = Polynom.getCoefficient(aMinuend) - Polynom.getCoefficient(aSubtrahend);
             if (temp != 1.0 && temp != -1.0) _output += temp >= 0 ? "+" + temp : temp;
             else _output += temp == 1.0 ? "+" : "-";
             _output += PolynomMain.usedVariable;
-            if (Polynom.getExponent(einMinuend) != 1.0 && Polynom.getExponent(einMinuend) != -1.0) _output += "^" + Polynom.getExponent(einMinuend);
-            else if (Polynom.getExponent(einMinuend) == 1.0 || Polynom.getExponent(einMinuend) == -1.0) _output += "";
-        } else if (Polynom.getExponent(einMinuend) == 0 && Polynom.getExponent(einSubtrahend) == 0 && !einMinuend.equals(einSubtrahend)) {
-            double temp = Double.parseDouble(einMinuend) - Double.parseDouble(einSubtrahend);
+            if (Polynom.getExponent(aMinuend) != 1.0 && Polynom.getExponent(aMinuend) != -1.0) _output += "^" + Polynom.getExponent(aMinuend);
+            else if (Polynom.getExponent(aMinuend) == 1.0 || Polynom.getExponent(aMinuend) == -1.0) _output += "";
+        } else if (Polynom.getExponent(aMinuend) == 0 && Polynom.getExponent(aSubtrahend) == 0 && !aMinuend.equals(aSubtrahend)) {
+            double temp = Double.parseDouble(aMinuend) - Double.parseDouble(aSubtrahend);
             _output += temp >= 0 ? "+" + temp : temp;
-        } else if (einMinuend.equals(einSubtrahend)) {
+        } else if (aMinuend.equals(aSubtrahend)) {
             _output += "";
         }
 
