@@ -3,10 +3,11 @@ A library to calculate polynomdivisions, you can find the latest compiled versio
 
 ### API Documentation:
 - First, add the Polynomdivision.jar as an external library to your project
-- Then you have to import Polynomdivision.PolynomMain to use the lib methods:
+- Then you have to import the class PolynomMain to use the lib methods and you also need the InvalidPolynomException if a polynom is invalid:
 
   ```Java
   import Polynomdivision.PolynomMain;
+  import Polynomdivision.InvalidPolynomException;
   ```
  #### After that you can call 3 static methods with this library:
   - *PolynomMain.getVersion()* returns the library version:
