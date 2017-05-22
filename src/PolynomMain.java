@@ -9,7 +9,7 @@ public class PolynomMain {
     /**
      * This string contains the version of the library
      */
-    private static final String VERSION = "1.0";
+    private static final String VERSION = "1.1";
     /**
      * This string contains the variable that is used in the output
      * It will be set in the validateInput method
@@ -33,11 +33,10 @@ public class PolynomMain {
      * @param input
      *        The strings that should be validated
      * @return
-     *        0: Valid polynom -> Valid
-     *        1: Wrong polynom syntax -> Invalid
-     *        2: More than one variable used (only x's or y's etc. but not more than one) -> Invalid
+     *        true if all polynoms are valid
+     *        But if something is invalid, a InvalidPolynomException is thrown and should be catched to get info about the cause
      */
-    public static int validateInput(String... input) {
+    public static boolean validateInput(String... input) throws InvalidPolynomException {
         return Validator.validateInput(input);
     }
 
@@ -88,7 +87,7 @@ public class PolynomMain {
         Polynom usedPolynom2 = new Polynom(polynom2);
 
 
-        while (usedPolynom1.getDeg() >= usedPolynom2.getDeg() && !usedPolynom1.cleaned().equals("+0")) {
+        while (usedPolynom1.getDeg() >= usedPolynom2.getDeg() && !usedPolynom1.getValue().equals("+0")) {
 
             /*                         Step 1                             */
             /* Dividing the highest exponential element from each polynom */
@@ -105,32 +104,29 @@ public class PolynomMain {
             /*                                 Step 2                                            */
             /* Multiplicating the result from step 1 with the whole second polynom (The divisor) */
             String t2 = PolynomMath.multiply(
-                                            Helper.clean(t1),
-                                            usedPolynom2.cleaned()
+                                            t1,
+                                            usedPolynom2.getValue()
                                             );
             /*                                                                                   */
 
 
-            calculation_steps += "-(" + Helper.clean(t2) + ")\n"; // Adding the result from step 2 to the calculation steps
+            calculation_steps += "-(" + t2 + ")\n"; // Adding the result from step 2 to the calculation steps
             calculation_steps += "------\n"; // Adding a seperator
 
 
             /*                              Step 3                          */
             /* Setting the used polynom to the new subtracted polynom value */
             usedPolynom1.setValue(
-                                 // Cleaning the result
-                                 Helper.clean(
-                                             // Subtracting the result from step 2 from the old value
-                                             PolynomMath.difference(
-                                                                   usedPolynom1.getValue(),
-                                                                   t2
-                                                                   )
-                                             )
+                                 // Subtracting the result from step 2 from the old value
+                                 PolynomMath.difference(
+                                                       usedPolynom1.getValue(),
+                                                       t2
+                                                       )
                                  );
             /*                                                               */
 
 
-            calculation_steps += usedPolynom1.cleaned() + "\n"; // Adding the calculated value from step 3 to the calculation steps
+            calculation_steps += usedPolynom1.getValue() + "\n"; // Adding the calculated value from step 3 to the calculation steps
 
         }
 
