@@ -85,7 +85,7 @@ class PolynomMath {
 
         //System.out.println(dividend + " : " + divisor + " = " + output);
 
-        return output;
+        return Helper.clean(output);
 
     }
 
@@ -195,7 +195,7 @@ class PolynomMath {
 
         //System.out.println(multiplier + " * " + multiplicand + " = " + output);
 
-        return output;
+        return Helper.clean(output);
     }
 
 
@@ -260,7 +260,7 @@ class PolynomMath {
 
         //System.out.println(minuend + " : " + subtrahend + " = " + output);
 
-        return output;
+        return Helper.clean(output);
     }
 
     /**
