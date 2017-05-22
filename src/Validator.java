@@ -7,18 +7,18 @@ package Polynomdivision;
 
 class Validator {
 
-    static int validateInput(String... input) {
+    static boolean validateInput(String... input) throws InvalidPolynomException {
         PolynomMain.usedVariable = "";
 
-        for (String einInput : input) {
+        for (int i = 0; i < input.length; i++) {
 
-            if (!isPolynom(einInput)) return 1; // Wrong polynom syntax -> Invalid
+            if (!isPolynom(input[i])) throw new InvalidPolynomException("Wrong polynom syntax", "Falsche Polynomsysntax", i); // Wrong polynom syntax -> Invalid
 
-            if (!usesVariable(einInput)) return 2; // More than one variable used (only x's or y's etc. but not both) -> Invalid
+            if (!usesVariable(input[i])) throw new InvalidPolynomException("Different variables used", "Verschiedene Variablen genutzt", i); // Different variables used (only x's or y's etc. but not both) -> Invalid
 
         }
 
-        return 0; // Valid polynom -> Valid
+        return true; // Valid polynom -> Valid
 
     }
 
