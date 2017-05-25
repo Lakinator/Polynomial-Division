@@ -103,16 +103,14 @@ class Polynom {
      *        It returns 0 if there is no variable in the string, that means the string contains only a number
      */
     static double getCoefficient(String in) {
-        if(in.matches("[+-][0-9]+[.]*[0-9]*[a-zA-Z]\\^[0-9]+[.]*[0-9]*")) {
-            return Double.parseDouble(in.split("[a-zA-Z]")[0]);
-        } else if (in.matches("[+-][a-zA-Z]\\^[0-9]+[.]*[0-9]*")) {
-            return Double.parseDouble(in.split("[a-zA-Z]")[0] + 1.0);
-        } else if (in.matches("[+-][0-9]+[.]*[0-9]*[a-zA-Z]")) {
-            return Double.parseDouble(in.split("[a-zA-Z]")[0]);
-        } else if (in.matches("[+-][a-zA-Z]")) {
-            return Double.parseDouble(in.split("[a-zA-Z]")[0] + 1.0);
-        } else if (in.matches("[+-][0-9]+[.]*[0-9]*")){
-            return 0;
+        if(in.matches("[+-]?[0-9]*(\\.[0-9]+)?[a-zA-Z](\\^[0-9]+(\\.[0-9]+)?)?")) {
+            String split = in.split("[a-zA-Z]")[0];
+            if (split.equals("+") || split.equals("-")) split = split + 1;
+            return Double.parseDouble(split);
+        } else if (in.matches("[+-]?[a-zA-Z]")) {
+            String split = in.split("[a-zA-Z]")[0];
+            if (!split.equals("+") && !split.equals("-")) split = "+";
+            return Double.parseDouble(split + 1.0);
         } else {
             return 0;
         }
@@ -127,18 +125,10 @@ class Polynom {
      *        It returns 0 if there is no variable in the string, that means the string contains only a number
      */
     static double getExponent(String in) {
-        if(in.matches("[+-][0-9]+[.]*[0-9]*[a-zA-Z]\\^[0-9]+[.]*[0-9]*")) {
+        if(in.matches("[+-]?[0-9]*(\\.[0-9]+)?[a-zA-Z]\\^[0-9]+(\\.[0-9]+)?")) {
             return Double.parseDouble(in.split("\\^")[1]);
-        } else if (in.matches("[+-][a-zA-Z]\\^[0-9]+[.]*[0-9]*")) {
-            return Double.parseDouble(in.split("\\^")[1]);
-        } else if (in.matches("[+-][0-9]+[a-zA-Z]")) {
+        } else if (in.matches("[+-]?[0-9]*(\\.[0-9]+)?[a-zA-Z]")) {
             return 1.0;
-        } else if (in.matches("[+-][a-zA-Z]")) {
-            return 1.0;
-        } else if (in.matches("[+-][0-9]+[.]*[0-9]*[a-zA-Z]")){
-            return 1.0;
-        } else if (in.matches("[+-][0-9]+[.]*[0-9]*")){
-            return 0;
         } else {
             return 0;
         }
