@@ -1,5 +1,5 @@
 # Polynomdivision
-A library to calculate polynomdivisions, you can find the latest compiled version [here](https://github.com/Lakinator/Polynomdivision/tree/master/compiled)
+A library to calculate polynomdivisions
 
 ### API Documentation:
 - First, add the Polynomdivision.jar as an external library to your project
