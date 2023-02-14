@@ -1,6 +1,8 @@
 # Polynomdivision
 A library to calculate polynomdivisions
 
+> Originally programmed in 2017 for school
+
 ### API Documentation:
 - First, add the Polynomdivision.jar as an external library to your project
 - Then you have to import the class PolynomMain to use the lib methods and you also need the InvalidPolynomException if a polynom is invalid:
