@@ -1,4 +1,4 @@
-package dev.deepstackdriver.polynomialdivision;
+package de.lakinator.polynomialdivision;
 
 import java.util.regex.Pattern;
 

@@ -1,4 +1,4 @@
-package dev.deepstackdriver.polynomialdivision;
+package de.lakinator.polynomialdivision;
 
 /**
  * 11.03.2017

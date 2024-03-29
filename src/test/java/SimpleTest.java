@@ -1,5 +1,5 @@
-import dev.deepstackdriver.polynomialdivision.InvalidPolynomException;
-import dev.deepstackdriver.polynomialdivision.PolynomMain;
+import de.lakinator.polynomialdivision.InvalidPolynomException;
+import de.lakinator.polynomialdivision.PolynomMain;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
