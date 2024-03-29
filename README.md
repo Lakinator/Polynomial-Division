@@ -1,5 +1,5 @@
-# Polynomdivision
-A library to calculate polynomdivisions
+# Polynomial Division
+A library for polynomial division
 
 > Originally programmed in 2017 for school
 
